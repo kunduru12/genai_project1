@@ -4,11 +4,11 @@ import cloudinary
 import cloudinary.uploader
 st.title("Media Platform")
 
-# cloudinary.config(
-#     cloud_name=st.secrets["cloud_name"],
-#     api_key=st.secrets["api_key"],
-#     api_secret=st.secrets["api_secret"]
-# )
+cloudinary.config(
+      cloud_name=st.secrets["cloud_name"],
+      api_key=st.secrets["api_key"],
+      api_secret=st.secrets["api_secret"]
+  )
 
 
 if "user" not in st.session_state:
@@ -34,11 +34,11 @@ def dashboard():
         elif "audio" in choosedFile.type:
             st.audio(choosedFile)  
 
-        # if st.button("upload file to cloudinary"):
-        #     uploaded_dict_obj=cloudinary.uploader.upload(choosedFile,resource_type="auto") 
-        #     url=uploaded_dict_obj["secure_url"]             
-        #     st.write(url)
-        #     st.write("file uploaded to cloudinary")
+        if st.button("upload file to cloudinary"):
+             uploaded_dict_obj=cloudinary.uploader.upload(choosedFile,resource_type="auto") 
+             url=uploaded_dict_obj["secure_url"]             
+             st.write(url)
+             st.write("file uploaded to cloudinary")
     elif opt == "Logout":
         st.session_state.user=None
         st.success("logout successfully...")
